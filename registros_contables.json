@@ -1,0 +1,107 @@
+[
+    {
+        "fecha_comprobante": "12/04/2025",
+        "fecha_contabilidad": "12/04/2025",
+        "neto": 10000.0,
+        "alicuota": "21%",
+        "iva": 2100.0,
+        "impuestos_internos": 10.0,
+        "neto_no_gravado": 0.0,
+        "exento": 1.0,
+        "retencion_iva": 2.0,
+        "retencion_ganancias": 3.0,
+        "retencion_sicoss": 5.0,
+        "provincia": "Buenos Aires",
+        "retencion_iibb": 4.0
+    },
+    {
+        "fecha_comprobante": "12/04/2025",
+        "num_comprobante": "00001-00000333",
+        "tipo_comprobante": "A",
+        "cliente": {
+            "denominacion": "JUAN",
+            "domicilio": "FRANCIA ",
+            "cuit": "20-27776471-8",
+            "mail": "vegaguillermog@gmail.com",
+            "telefono": "2364541853"
+        },
+        "factura": {
+            "neto": 100000.0,
+            "alicuota": "21%",
+            "iva": 21000.0
+        },
+        "otros": {
+            "impuestos_internos": 1223.0,
+            "neto_no_gravado": 0.0,
+            "exento": 0.0
+        },
+        "ret_nacionales": {
+            "retencion_iva": 1523.0,
+            "retencion_ganancias": 0.0,
+            "retencion_sicoss": 0.0
+        },
+        "ret_provinciales": [
+            {
+                "provincia": "CABA",
+                "monto": 145.0
+            },
+            {
+                "provincia": "Buenos Aires",
+                "monto": 0.0
+            },
+            {
+                "provincia": "Buenos Aires",
+                "monto": 0.0
+            },
+            {
+                "provincia": "Buenos Aires",
+                "monto": 0.0
+            }
+        ]
+    },
+    {
+        "fecha_comprobante": "25/03/2025",
+        "num_comprobante": "00001-000004",
+        "tipo_comprobante": "A",
+        "cliente": {
+            "denominacion": "gui",
+            "domicilio": "fra ",
+            "cuit": "20-2777",
+            "mail": "vega guilelrmo ",
+            "telefono": "2363"
+        },
+        "factura": {
+            "neto": 150000.0,
+            "alicuota": "21%",
+            "iva": 31500.0
+        },
+        "otros": {
+            "impuestos_internos": 231.0,
+            "neto_no_gravado": 0.0,
+            "exento": 0.0
+        },
+        "ret_nacionales": {
+            "retencion_iva": 79.0,
+            "retencion_ganancias": 0.0,
+            "retencion_sicoss": 0.0
+        },
+        "ret_provinciales": [
+            {
+                "provincia": "Buenos Aires",
+                "monto": 67.0
+            },
+            {
+                "provincia": "Buenos Aires",
+                "monto": 0.0
+            },
+            {
+                "provincia": "Buenos Aires",
+                "monto": 0.0
+            },
+            {
+                "provincia": "Buenos Aires",
+                "monto": 0.0
+            }
+        ]
+    }
+]

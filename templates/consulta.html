@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta de Registros</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Registros</h1>
+    <table border="1">
+        <tr><th>ID</th><th>Fecha</th><th>Cuenta</th><th>Descripción</th><th>Saldo Inicio</th><th>Debe</th><th>Haber</th><th>Acciones</th></tr>
+        {% for registro in registros %}
+        <tr>
+            <td>{{ registro[0] }}</td>
+            <td>{{ registro[1] }}</td>
+            <td>{{ registro[2] }}</td>
+            <td>{{ registro[3] }}</td>
+            <td>{{ registro[4] }}</td>
+            <td>{{ registro[5] }}</td>
+            <td>{{ registro[6] }}</td>
+            <td>
+                <a href="/editar/{{ registro[0] }}">Editar</a> |
+                <a href="/imprimir/{{ registro[0] }}">PDF</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Volver</a> | <a href="/exportar_excel">Exportar a Excel</a>
+</body>
+</html>

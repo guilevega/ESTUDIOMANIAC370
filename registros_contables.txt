@@ -1,0 +1,41 @@
+Registros Contables:
+
+Registro 1:
+Fecha: 12/04/2025 | N° Comprobante: N/A | Tipo: N/A
+Cliente: N/A | CUIT: N/A
+Neto: 0.00 | IVA (N/A): 0.00
+Impuestos Internos: 0.00 | Neto No Gravado: 0.00 | Exento: 0.00
+Retenciones Nacionales: IVA: 0.00 | Ganancias: 0.00 | SICOES: 0.00
+Retenciones Provinciales:
+  IIBB 1: N/A - 0.00
+  IIBB 2: N/A - 0.00
+  IIBB 3: N/A - 0.00
+  IIBB 4: N/A - 0.00
+Monto Bruto: 0.00
+
+Registro 2:
+Fecha: 12/04/2025 | N° Comprobante: 00001-00000333 | Tipo: A
+Cliente: JUAN | CUIT: 20-27776471-8
+Neto: 100000.00 | IVA (21%): 21000.00
+Impuestos Internos: 1223.00 | Neto No Gravado: 0.00 | Exento: 0.00
+Retenciones Nacionales: IVA: 1523.00 | Ganancias: 0.00 | SICOES: 0.00
+Retenciones Provinciales:
+  IIBB 1: CABA - 145.00
+  IIBB 2: Buenos Aires - 0.00
+  IIBB 3: Buenos Aires - 0.00
+  IIBB 4: Buenos Aires - 0.00
+Monto Bruto: 120555.00
+
+Registro 3:
+Fecha: 25/03/2025 | N° Comprobante: 00001-000004 | Tipo: A
+Cliente: gui | CUIT: 20-2777
+Neto: 150000.00 | IVA (21%): 31500.00
+Impuestos Internos: 231.00 | Neto No Gravado: 0.00 | Exento: 0.00
+Retenciones Nacionales: IVA: 79.00 | Ganancias: 0.00 | SICOES: 0.00
+Retenciones Provinciales:
+  IIBB 1: Buenos Aires - 67.00
+  IIBB 2: Buenos Aires - 0.00
+  IIBB 3: Buenos Aires - 0.00
+  IIBB 4: Buenos Aires - 0.00
+Monto Bruto: 181585.00
+

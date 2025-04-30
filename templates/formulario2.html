@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Operaciones - Estudio Maniac 370</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #ff3333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .section {
+            background-color: #2a2a2a;
+            border: 2px solid #ff3333;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .section h2 {
+            color: #ff3333;
+            border-bottom: 2px solid #ff3333;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+        .column {
+            flex: 1;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ff3333;
+            padding: 8px;
+            color: #ffffff;
+        }
+        th {
+            background-color: #ff3333;
+            color: #ffffff;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ff3333;
+            border-radius: 5px;
+            background-color: #3a3a3a;
+            color: #ffffff;
+        }
+        input[type="checkbox"] {
+            width: auto;
+        }
+        .add-row, .print-btn, .action-btn {
+            background-color: #ff3333;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .add-row:hover, .print-btn:hover, .action-btn:hover {
+            background-color: #cc0000;
+        }
+        .sub-column {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .action-buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .action-btn {
+            margin: 0 10px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Formulario de Operaciones - Estudio Maniac 370</h1>
+    <form method="POST" action="/guardar" enctype="multipart/form-data">
+        <!-- Datos Generales -->
+        <div class="section">
+            <h2>Datos Generales</h2>
+            <label>Número de Formulario (Automático): <input type="text" name="numero_formulario" readonly value="{{ numero_formulario }}"></label><br>
+            <label>Fecha de Emisión: <input type="date" name="fecha_emision" required></label><br>
+            <label>Empresa que Emite: <input type="text" name="empresa_emite" required></label><br>
+            <label>Tipo de Orden: 
+                <select name="tipo_orden" required>
+                    <option value="pago">Orden de Pago</option>
+                    <option value="cobro">Orden de Cobro</option>
+                    <option value="prestamo">Orden de Préstamo</option>
+                    <option value="credito">Orden de Crédito</option>
+                    <option value="inversion">Orden de Inversión</option>
+                    <option value="compra">Orden de Compra</option>
+                </select>
+            </label>
+        </div>
+
+        <!-- Origen de Fondos -->
+        <div class="section">
+            <h2>Origen de Fondos</h2>
+            <label>Denominación de la Empresa: <input type="text" name="origen_empresa"></label><br>
+            <label>Cuenta según el Plan: <input type="text" name="origen_cuenta"></label><br>
+            <label>Detalle (varios renglones): <textarea name="origen_detalle" rows="3"></textarea></label><br>
+            <label>Monto: <input type="number" step="0.01" name="origen_monto"></label><br>
+            <label>Observación: <input type="text" name="origen_observacion"></label><br>
+            <label>Mail de Destino: <input type="email" name="origen_mail"></label><br>
+            <label>Grupo de WhatsApp: <input type="text" name="origen_whatsapp"></label><br>
+            <label>Cargar en el Sistema: 
+                <input type="checkbox" name="origen_cargar"> Sí
+                <input type="text" name="origen_cargar_detalle" placeholder="Indicar el lugar">
+            </label><br>
+            <label>Tipo de Destino de la Operación: <input type="text" name="origen_tipo_destino"></label>
+        </div>
+
+        <!-- Destino de Fondos -->
+        <div class="section">
+            <h2>Destino de Fondos</h2>
+            <label>Denominación de la Empresa: <input type="text" name="destino_empresa"></label><br>
+            <label>Cuenta según el Plan: <input type="text" name="destino_cuenta"></label><br>
+            <label>Detalle (varios renglones): <textarea name="destino_detalle" rows="3"></textarea></label><br>
+            <label>Monto: <input type="number" step="0.01" name="destino_monto"></label><br>
+            <label>Observación: <input type="text" name="destino_observacion"></label><br>
+            <label>Mail de Destino: <input type="email" name="destino_mail"></label><br>
+            <label>Grupo de WhatsApp: <input type="text" name="destino_whatsapp"></label><br>
+            <label>Cargar en el Sistema: 
+                <input type="checkbox" name="destino_cargar"> Sí
+                <input type="text" name="destino_cargar_detalle" placeholder="Indicar el lugar">
+            </label><br>
+            <label>Tipo de Destino de la Operación: <input type="text" name="destino_tipo_destino"></label>
+        </div>
+
+        <!-- Cuenta Corriente -->
+        <div class="section">
+            <h2>Cuenta Corriente</h2>
+            <table id="cuenta-corriente">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Detalle</th>
+                        <th>Saldo al Inicio</th>
+                        <th>Debe</th>
+                        <th>Haber</th>
+                        <th>Saldo al Cierre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="date" name="cc_fecha_0"></td>
+                        <td><input type="text" name="cc_detalle_0"></td>
+                        <td><input type="number" step="0.01" name="cc_saldo_inicio_0" class="saldo-inicio"></td>
+                        <td><input type="number" step="0.01" name="cc_debe_0" class="debe"></td>
+                        <td><input type="number" step="0.01" name="cc_haber_0" class="haber"></td>
+                        <td><input type="text" name="cc_saldo_cierre_0" class="saldo-cierre" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="add-row" onclick="addCuentaCorrienteRow()">Agregar Fila</button>
+            <button type="button" class="print-btn" onclick="printSection('cuenta-corriente')">Imprimir</button>
+        </div>
+
+        <!-- Forma de Pago y Cobro -->
+        <div class="section">
+            <h2>Forma de Pago y Cobro</h2>
+            <div class="row">
+                <div class="column">
+                    <h3>Forma de Pago</h3>
+                    <table id="forma-pago">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Detalle</th>
+                                <th>Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select name="pago_tipo_0">
+                                        <option value="efectivo">Efectivo</option>
+                                        <option value="cheque_propio">Cheque Propio</option>
+                                        <option value="cheque_tercero">Cheque de Tercero</option>
+                                        <option value="transferencia">Transferencia</option>
+                                        <option value="otras">Otras</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" name="pago_detalle_0"></td>
+                                <td><input type="number" step="0.01" name="pago_monto_0" class="pago-monto"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="add-row" onclick="addRow('forma-pago', 'pago')">Agregar Fila</button>
+                    <p>Total Pago: <span id="total-pago">0.00</span></p>
+                </div>
+                <div class="column">
+                    <h3>Forma de Cobro</h3>
+                    <table id="forma-cobro">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Detalle</th>
+                                <th>Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select name="cobro_tipo_0">
+                                        <option value="efectivo">Efectivo</option>
+                                        <option value="cheque_propio">Cheque Propio</option>
+                                        <option value="cheque_tercero">Cheque de Tercero</option>
+                                        <option value="transferencia">Transferencia</option>
+                                        <option value="otras">Otras</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" name="cobro_detalle_0"></td>
+                                <td><input type="number" step="0.01" name="cobro_monto_0" class="cobro-monto"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="add-row" onclick="addRow('forma-cobro', 'cobro')">Agregar Fila</button>
+                    <p>Total Cobro: <span id="total-cobro">0.00</span></p>
+                </div>
+            </div>
+            <button type="button" class="print-btn" onclick="printSection('forma-pago-cobro')">Imprimir</button>
+        </div>
+
+        <!-- Documentación Adjunta -->
+        <div class="section">
+            <h2>Documentación Adjunta</h2>
+            <table id="documentacion-adjunta">
+                <thead>
+                    <tr>
+                        <th>Tipo de Documentación</th>
+                        <th>Detalle</th>
+                        <th>Organismo</th>
+                        <th>Tipo</th>
+                        <th>Adjuntar Documento (PDF/JPG)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <select name="doc_tipo_0">
+                                <option value="factura">Factura</option>
+                                <option value="recibo">Recibo</option>
+                                <option value="fotocopia_cma">Fotocopia CMA</option>
+                                <option value="presupuesto">Presupuesto</option>
+                                <option value="ticket_transferencia">Ticket de Transferencia</option>
+                                <option value="ticket_otros">Ticket de Otros Medios de Pago</option>
+                                <option value="constancia_cbu">Constancia de CBU</option>
+                                <option value="constancia_cuit">Constancia de CUIT</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </td>
+                        <td><input type="text" name="doc_detalle_0"></td>
+                        <td><input type="text" name="doc_organismo_0"></td>
+                        <td><input type="text" name="doc_subtipo_0"></td>
+                        <td><input type="file" name="doc_adjunto_0" accept=".pdf,.jpg,.jpeg"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="add-row" onclick="addDocumentacionRow()">Agregar Fila</button>
+        </div>
+
+        <!-- Destino del Archivo -->
+        <div class="section">
+            <h2>Destino del Archivo</h2>
+            <div class="row">
+                <!-- Documentación a Archivar -->
+                <div class="column">
+                    <h3>Documentación a Archivar</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ítem</th>
+                                <th>Tipo de Documento</th>
+                                <th>Detalle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Documentación</td>
+                                <td>
+                                    <div class="sub-column">
+                                        <label><input type="checkbox" name="archivar_documentacion_original"> Original</label>
+                                        <label><input type="checkbox" name="archivar_documentacion_copia_simple"> Copia Simple</label>
+                                        <label><input type="checkbox" name="archivar_documentacion_copia_certificada"> Copia Certificada</label>
+                                        <label><input type="checkbox" name="archivar_documentacion_copia_contenido"> Copia con Contenido</label>
+                                        <label><input type="checkbox" name="archivar_documentacion_certificacion_contable"> Certificación Contable</label>
+                                        <label><input type="checkbox" name="archivar_documentacion_certificacion_ingresos"> Certificación de Ingresos</label>
+                                    </div>
+                                </td>
+                                <td><input type="text" name="archivar_documentacion_detalle"></td>
+                            </tr>
+                            <tr>
+                                <td>Organismos</td>
+                                <td>
+                                    <div class="sub-column">
+                                        <label><input type="checkbox" name="archivar_organismos_original"> Original</label>
+                                        <label><input type="checkbox" name="archivar_organismos_copia_simple"> Copia Simple</label>
+                                        <label><input type="checkbox" name="archivar_organismos_copia_certificada"> Copia Certificada</label>
+                                        <label><input type="checkbox" name="archivar_organismos_copia_contenido"> Copia con Contenido</label>
+                                        <label><input type="checkbox" name="archivar_organismos_certificacion_contable"> Certificación Contable</label>
+                                        <label><input type="checkbox" name="archivar_organismos_certificacion_ingresos"> Certificación de Ingresos</label>
+                                    </div>
+                                </td>
+                                <td><input type="text" name="archivar_organismos_detalle"></td>
+                            </tr>
+                            <tr>
+                                <td>Tipo</td>
+                                <td>
+                                    <div class="sub-column">
+                                        <label><input type="checkbox" name="archivar_tipo_original"> Original</label>
+                                        <label><input type="checkbox" name="archivar_tipo_copia_simple"> Copia Simple</label>
+                                        <label><input type="checkbox" name="archivar_tipo_copia_certificada"> Copia Certificada</label>
+                                        <label><input type="checkbox" name="archivar_tipo_copia_contenido"> Copia con Contenido</label>
+                                        <label><input type="checkbox" name="archivar_tipo_certificacion_contable"> Certificación Contable</label>
+                                        <label><input type="checkbox" name="archivar_tipo_certificacion_ingresos"> Certificación de Ingresos</label>
+                                    </div>
+                                </td>
+                                <td><input type="text" name="archivar_tipo_detalle"></td>
+                            </tr>
+                            <tr>
+                                <td>Declaración Jurada</td>
+                                <td>
+                                    <div class="sub-column">
+                                        <label><input type="checkbox" name="archivar_declaracion_original"> Original</label>
+                                        <label><input type="checkbox" name="archivar_declaracion_copia_simple"> Copia Simple</label>
+                                        <label><input type="checkbox" name="archivar_declaracion_copia_certificada"> Copia Certificada</label>
+                                        <label><input type="checkbox" name="archivar_declaracion_copia_contenido"> Copia con Contenido</label>
+                                        <label><input type="checkbox" name="archivar_declaracion_certificacion_contable"> Certificación Contable</label>
+                                        <label><input type="checkbox" name="archivar_declaracion_certificacion_ingresos"> Certificación de Ingresos</label>
+                                    </div>
+                                </td>
+                                <td><input type="text" name="archivar_declaracion_detalle"></td>
+                            </tr>
+                            <tr>
+                                <td>Balance</td>
+                                <td>
+                                    <div class="sub-column">
+                                        <label><input type="checkbox" name="archivar_balance_original"> Original</label>
+                                        <label><input type="checkbox" name="archivar_balance_copia_simple"> Copia Simple</label>
+                                        <label><input type="checkbox" name="archivar_balance_copia_certificada"> Copia Certificada</label>
+                                        <label><input type="checkbox" name="archivar_balance_copia_contenido"> Copia con Contenido</label>
+                                        <label><input type="checkbox" name="archivar_balance_certificacion_contable"> Certificación Contable</label>
+                                        <label><input type="checkbox" name="archivar_balance_certificacion_ingresos"> Certificación de Ingresos</label>
+                                    </div>
+                                </td>
+                                <td><input type="text" name="archivar_balance_detalle"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Destino de Archivo -->
+                <div class="column">
+                    <h3>Destino de Archivo</h3>
+                    <div class="row">
+                        <!-- Físico -->
+                        <div class="column">
+                            <h4>Físico</h4>
+                            <table id="destino-fisico">
+                                <thead>
+                                    <tr>
+                                        <th>Destino</th>
+                                        <th>Detalle</th>
+                                        <th>Responsable</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" name="fisico_destino_0"></td>
+                                        <td><input type="text" name="fisico_detalle_0"></td>
+                                        <td><input type="text" name="fisico_responsable_0"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button type="button" class="add-row" onclick="addDestinoRow('destino-fisico', 'fisico')">Agregar Fila</button>
+                        </div>
+
+                        <!-- Digital -->
+                        <div class="column">
+                            <h4>Digital</h4>
+                            <table id="destino-digital">
+                                <thead>
+                                    <tr>
+                                        <th>Destino</th>
+                                        <th>Detalle</th>
+                                        <th>Responsable</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" name="digital_destino_0"></td>
+                                        <td><input type="text" name="digital_detalle_0"></td>
+                                        <td><input type="text" name="digital_responsable_0"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button type="button" class="add-row" onclick="addDestinoRow('destino-digital', 'digital')">Agregar Fila</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="action-buttons">
+            <button type="submit" class="action-btn">Guardar</button>
+            <button type="button" class="action-btn" onclick="window.location.href='/consultar'">Consultar</button>
+            <button type="button" class="action-btn" onclick="alert('Funcionalidad de edición en desarrollo')">Editar</button>
+            <button type="button" class="action-btn" onclick="printForm()">Imprimir</button>
+        </div>
+    </form>
+
+    <script>
+        let ccCounter = 1;
+        let pagoCounter = 1;
+        let cobroCounter = 1;
+        let fisicoCounter = 1;
+        let digitalCounter = 1;
+        let docCounter = 1;
+
+        function addCuentaCorrienteRow() {
+            const table = document.getElementById('cuenta-corriente').getElementsByTagName('tbody')[0];
+            const row = table.insertRow();
+            row.innerHTML = `
+                <td><input type="date" name="cc_fecha_${ccCounter}"></td>
+                <td><input type="text" name="cc_detalle_${ccCounter}"></td>
+                <td><input type="number" step="0.01" name="cc_saldo_inicio_${ccCounter}" class="saldo-inicio" readonly></td>
+                <td><input type="number" step="0.01" name="cc_debe_${ccCounter}" class="debe"></td>
+                <td><input type="number" step="0.01" name="cc_haber_${ccCounter}" class="haber"></td>
+                <td><input type="text" name="cc_saldo_cierre_${ccCounter}" class="saldo-cierre" readonly></td>
+            `;
+            updateCuentaCorriente();
+            ccCounter++;
+        }
+
+        function updateCuentaCorriente() {
+            const rows = document.getElementById('cuenta-corriente').getElementsByTagName('tbody')[0].rows;
+            for (let i = 0; i < rows.length; i++) {
+                const saldoInicio = rows[i].querySelector('.saldo-inicio');
+                const debe = rows[i].querySelector('.debe');
+                const haber = rows[i].querySelector('.haber');
+                const saldoCierre = rows[i].querySelector('.saldo-cierre');
+
+                if (i === 0) {
+                    saldoInicio.removeAttribute('readonly');
+                } else {
+                    const prevSaldoCierre = parseFloat(rows[i-1].querySelector('.saldo-cierre').value) || 0;
+                    saldoInicio.value = prevSaldoCierre.toFixed(2);
+                }
+
+                debe.addEventListener('input', calculateSaldoCierre);
+                haber.addEventListener('input', calculateSaldoCierre);
+                calculateSaldoCierre.call(debe, { target: debe });
+            }
+        }
+
+        function calculateSaldoCierre(event) {
+            const row = event.target.closest('tr');
+            const saldoInicio = parseFloat(row.querySelector('.saldo-inicio').value) || 0;
+            const debe = parseFloat(row.querySelector('.debe').value) || 0;
+            const haber = parseFloat(row.querySelector('.haber').value) || 0;
+            const saldoCierre = row.querySelector('.saldo-cierre');
+            saldoCierre.value = (saldoInicio + debe - haber).toFixed(2);
+            updateCuentaCorriente();
+        }
+
+        function addRow(tableId, prefix) {
+            const table = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+            const row = table.insertRow();
+            const counter = (tableId === 'forma-pago') ? pagoCounter++ : cobroCounter++;
+            row.innerHTML = `
+                <td>
+                    <select name="${prefix}_tipo_${counter}">
+                        <option value="efectivo">Efectivo</option>
+                        <option value="cheque_propio">Cheque Propio</option>
+                        <option value="cheque_tercero">Cheque de Tercero</option>
+                        <option value="transferencia">Transferencia</option>
+                        <option value="otras">Otras</option>
+                    </select>
+                </td>
+                <td><input type="text" name="${prefix}_detalle_${counter}"></td>
+                <td><input type="number" step="0.01" name="${prefix}_monto_${counter}" class="${prefix}-monto"></td>
+            `;
+            updateTotal(tableId === 'forma-pago' ? 'pago' : 'cobro');
+        }
+
+        function addDestinoRow(tableId, prefix) {
+            const table = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+            const row = table.insertRow();
+            const counter = (tableId === 'destino-fisico') ? fisicoCounter++ : digitalCounter++;
+            row.innerHTML = `
+                <td><input type="text" name="${prefix}_destino_${counter}"></td>
+                <td><input type="text" name="${prefix}_detalle_${counter}"></td>
+                <td><input type="text" name="${prefix}_responsable_${counter}"></td>
+            `;
+        }
+
+        function addDocumentacionRow() {
+            const table = document.getElementById('documentacion-adjunta').getElementsByTagName('tbody')[0];
+            const row = table.insertRow();
+            row.innerHTML = `
+                <td>
+                    <select name="doc_tipo_${docCounter}">
+                        <option value="factura">Factura</option>
+                        <option value="recibo">Recibo</option>
+                        <option value="fotocopia_cma">Fotocopia CMA</option>
+                        <option value="presupuesto">Presupuesto</option>
+                        <option value="ticket_transferencia">Ticket de Transferencia</option>
+                        <option value="ticket_otros">Ticket de Otros Medios de Pago</option>
+                        <option value="constancia_cbu">Constancia de CBU</option>
+                        <option value="constancia_cuit">Constancia de CUIT</option>
+                        <option value="otros">Otros</option>
+                    </select>
+                </td>
+                <td><input type="text" name="doc_detalle_${docCounter}"></td>
+                <td><input type="text" name="doc_organismo_${docCounter}"></td>
+                <td><input type="text" name="doc_subtipo_${docCounter}"></td>
+                <td><input type="file" name="doc_adjunto_${docCounter}" accept=".pdf,.jpg,.jpeg"></td>
+            `;
+            docCounter++;
+        }
+
+        function updateTotal(type) {
+            const inputs = document.getElementsByClassName(`${type}-monto`);
+            let total = 0;
+            for (let input of inputs) {
+                total += parseFloat(input.value) || 0;
+            }
+            document.getElementById(`total-${type}`).textContent = total.toFixed(2);
+        }
+
+        document.addEventListener('input', (e) => {
+            if (e.target.classList.contains('pago-monto')) updateTotal('pago');
+            if (e.target.classList.contains('cobro-monto')) updateTotal('cobro');
+        });
+
+        function printSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write('<html><head><title>Imprimir Sección</title>');
+            printWindow.document.write('<style>body { font-family: Arial, sans-serif; } table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid #000; padding: 8px; } th { background-color: #ff3333; color: #fff; }</style>');
+            printWindow.document.write('</head><body>');
+            printWindow.document.write(section.outerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        function printForm() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

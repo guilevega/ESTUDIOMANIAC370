@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio XY 36</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f0f5;
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(to right, #6a5acd, #ff69b4);
+            padding: 20px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 100px auto 40px;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        /* Sidebar (Página Web y Administración) */
+        .sidebar {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar.web h2 {
+            color: #87ceeb; /* Azul */
+        }
+
+        .sidebar.admin h2 {
+            color: #ff4040; /* Rojo claro */
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .xy-btn {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            border-radius: 5px;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .xy-btn.web {
+            background-color: #6a5acd; /* Lila */
+            color: #fff;
+        }
+
+        .xy-btn.web:hover {
+            transform: translateY(-5px);
+            background-color: #5a4ab5;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .xy-btn.admin {
+            background-color: #ff69b4; /* Rosa */
+            color: #fff;
+        }
+
+        .xy-btn.admin:hover {
+            transform: translateY(-5px);
+            background-color: #ff4f9a;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Noticias */
+        .news-section {
+            flex: 2;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #ff4040;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .news-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #6a5acd;
+            margin-bottom: 10px;
+        }
+
+        .news-item p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #6a5acd;
+            padding: 20px 0;
+            text-align: center;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Estudio XY 36</h1>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Sidebar: Página Web -->
+        <aside class="sidebar web">
+            <h2>Página Web</h2>
+            <ul>
+                <li><a href="http://www.aiserver.com.ar" target="_blank" class="xy-btn web">AIServer</a></li>
+                <li><a href="http://ainews.com.ar" target="_blank" class="xy-btn web">AINews</a></li>
+                <li><a href="https://wagyuangusasociacion.com.ar" target="_blank" class="xy-btn web">Wagyu Angus Asociación</a></li>
+                <li><a href="http://www.bitland.com.ar" target="_blank" class="xy-btn web">Bitland</a></li>
+                <li><a href="https://bocacoin.com.ar" target="_blank" class="xy-btn web">BocaCoin</a></li>
+                <li><a href="https://camaramipyme.com.ar" target="_blank" class="xy-btn web">Cámara MiPyme</a></li>
+                <li><a href="https://centuryboxsrl.com.ar" target="_blank" class="xy-btn web">Century Box SRL</a></li>
+                <li><a href="http://www.cloudy.com.ar" target="_blank" class="xy-btn web">Cloudy</a></li>
+                <li><a href="https://consignatariaunzue.com.ar" target="_blank" class="xy-btn web">Consignataria Unzue</a></li>
+                <li><a href="http://www.econsultgi.com" target="_blank" class="xy-btn web">Econsultgi</a></li>
+                <li><a href="http://estudioxy36.com.ar" target="_blank" class="xy-btn web">Estudio XY 36</a></li>
+                <li><a href="https://fainten.com.ar" target="_blank" class="xy-btn web">Fainten</a></li>
+                <li><a href="http://www.gvn.com.ar" target="_blank" class="xy-btn web">GVN</a></li>
+                <li><a href="http://www.hcinegocios.com.ar" target="_blank" class="xy-btn web">HCI Negocios</a></li>
+                <li><a href="https://holdingcaixa.com.ar" target="_blank" class="xy-btn web">Holding Caixa</a></li>
+                <li><a href="https://harvard.com.ar" target="_blank" class="xy-btn web">Harvard</a></li>
+                <li><a href="http://www.infojunin.com.ar" target="_blank" class="xy-btn web">Info Junín</a></li>
+                <li><a href="https://institutotributarioysocietario.com.ar" target="_blank" class="xy-btn web">Instituto Tributario y Societario</a></li>
+                <li><a href="https://lavanguardiahoy.com.ar" target="_blank" class="xy-btn web">La Vanguardia Hoy</a></li>
+                <li><a href="https://labcisco.com.ar" target="_blank" class="xy-btn web">Lab Cisco</a></li>
+                <li><a href="https://livecent.com.ar" target="_blank" class="xy-btn web">LiveCent</a></li>
+                <li><a href="https://mactredxc.com.ar" target="_blank" class="xy-btn web">Mactredxc</a></li>
+                <li><a href="https://medcarelife.com.ar" target="_blank" class="xy-btn web">MedCare Life</a></li>
+                <li><a href="https://mercadoseguro.net.ar" target="_blank" class="xy-btn web">Mercado Seguro</a></li>
+                <li><a href="https://micontadoronline.net.ar" target="_blank" class="xy-btn web">Mi Contador Online</a></li>
+                <li><a href="https://milyunaflores.com.ar" target="_blank" class="xy-btn web">Mil y Una Flores</a></li>
+                <li><a href="https://rufusnews.com.ar" target="_blank" class="xy-btn web">Rufus News</a></li>
+                <li><a href="https://tuspagosonline.com" target="_blank" class="xy-btn web">Tus Pagos Online</a></li>
+                <li><a href="https://tusnegocioshoy.com.ar" target="_blank" class="xy-btn web">Tus Negocios Hoy</a></li>
+                <li><a href="http://www.scotlandcard.com.ar" target="_blank" class="xy-btn web">Scotland Card</a></li>
+                <li><a href="https://tuscobranzasonline.com.ar" target="_blank" class="xy-btn web">Tus Cobranzas Online</a></li>
+                <li><a href="https://tuscomprasonline.ar" target="_blank" class="xy-btn web">Tus Compras Online</a></li>
+                <li><a href="https://uberpack.com.ar" target="_blank" class="xy-btn web">UberPack</a></li>
+                <li><a href="https://ubertrack.com.ar" target="_blank" class="xy-btn web">UberTrack</a></li>
+                <li><a href="http://www.warimba.com.ar" target="_blank" class="xy-btn web">Warimba</a></li>
+                <li><a href="http://niupampeanasa.com" target="_blank" class="xy-btn web">Niu Pampeana SA</a></li>
+                <li><a href="https://soutoycavandieagronegocios.com.ar" target="_blank" class="xy-btn web">Souto y Cavandie Agronegocios</a></li>
+                <li><a href="http://www.smartceo.com.ar" target="_blank" class="xy-btn web">Smart CEO</a></li>
+                <li><a href="https://tucontadorsmart.com.ar" target="_blank" class="xy-btn web">Tu Contador Smart</a></li>
+                <li><a href="http://www.scotlandcripto.com.ar" target="_blank" class="xy-btn web">Scotland Cripto</a></li>
+                <li><a href="https://necarargentinasa.com.ar" target="_blank" class="xy-btn web">Necar Argentina SA</a></li>
+            </ul>
+        </aside>
+
+        <!-- Noticias -->
+        <section class="news-section">
+            <h2>Últimas Noticias</h2>
+            <div class="news-item">
+                <h3>1. Tendencias en Diseño Web para 2025</h3>
+                <p>Los diseños minimalistas y las animaciones suaves están dominando el panorama del diseño web este año, con un enfoque en la experiencia del usuario.</p>
+            </div>
+            <div class="news-item">
+                <h3>2. La Importancia del SEO en el Marketing Digital</h3>
+                <p>Optimizar tu sitio web para motores de búsqueda sigue siendo clave para atraer tráfico orgánico y aumentar la visibilidad de tu marca.</p>
+            </div>
+            <div class="news-item">
+                <h3>3. Cómo Crear una Página Web Exitosa</h3>
+                <p>Una buena página web debe ser rápida, responsive y fácil de navegar. Aquí te damos 5 consejos para lograrlo.</p>
+            </div>
+            <div class="news-item">
+                <h3>4. Estrategias de Marketing en Redes Sociales</h3>
+                <p>El uso de Instagram y TikTok para promocionar tu negocio está en auge. Aprende cómo aprovechar estas plataformas.</p>
+            </div>
+            <div class="news-item">
+                <h3>5. La Revolución del E-commerce</h3>
+                <p>Las ventas online siguen creciendo. Descubre cómo optimizar tu tienda virtual para aumentar conversiones.</p>
+            </div>
+            <div class="news-item">
+                <h3>6. Herramientas de Marketing Digital para 2025</h3>
+                <p>Plataformas como Google Analytics y HubSpot están transformando la forma en que las empresas miden sus campañas.</p>
+            </div>
+            <div class="news-item">
+                <h3>7. La Importancia de un Buen Hosting</h3>
+                <p>Elegir un hosting confiable es crucial para la velocidad y seguridad de tu página web. Aquí te recomendamos los mejores.</p>
+            </div>
+            <div class="news-item">
+                <h3>8. Cómo Usar el Email Marketing Efectivamente</h3>
+                <p>El email marketing sigue siendo una herramienta poderosa para conectar con tus clientes. Aprende las mejores prácticas.</p>
+            </div>
+            <div class="news-item">
+                <h3>9. Tendencias de UX/UI para Páginas Web</h3>
+                <p>El diseño centrado en el usuario es más importante que nunca. Conoce las tendencias que están marcando el rumbo.</p>
+            </div>
+            <div class="news-item">
+                <h3>10. Cómo Medir el Éxito de tu Sitio Web</h3>
+                <p>Indicadores como el tiempo de carga, la tasa de rebote y las conversiones son clave para evaluar el rendimiento de tu web.</p>
+            </div>
+        </section>
+
+        <!-- Sidebar: Administración -->
+        <aside class="sidebar admin">
+            <h2>Administración</h2>
+            <ul>
+                <li><a href="https://don-santos-fierros.netlify.app" target="_blank" class="xy-btn admin">Don Santos Fierros</a></li>
+                <li><a href="https://iron-found.netlify.app" target="_blank" class="xy-btn admin">Iron Found</a></li>
+                <li><a href="https://nacarargentina.netlify.app" target="_blank" class="xy-btn admin">Nacar Argentina</a></li>
+                <li><a href="https://nnbb-sociedades.netlify.app" target="_blank" class="xy-btn admin">NNBB Sociedades</a></li>
+                <li><a href="https://matel-seis.netlify.app" target="_blank" class="xy-btn admin">Matel Seis</a></li>
+                <li><a href="https://smart-ceo.netlify.app" target="_blank" class="xy-btn admin">Smart CEO</a></li>
+                <li><a href="https://warimba.netlify.app" target="_blank" class="xy-btn admin">Warimba</a></li>
+                <li><a href="https://virtual-pos.netlify.app" target="_blank" class="xy-btn admin">Virtual POS</a></li>
+                <li><a href="https://exportacion-san-antonio.netlify.app" target="_blank" class="xy-btn admin">Exportación San Antonio</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Estudio XY 36 - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>
